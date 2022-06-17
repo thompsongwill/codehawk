@@ -4,4 +4,15 @@
 
 <h2>Welcome to Dev Villa</h2>
 
+{% for item in project %}
+
+ <p> Project name:<a href="{% url 'projects:single_project' item.id %}">{{ item.title }} </a>   </p>
+
+ 
+     <a href="{% url 'projects:update_project' item.id %}">Edit</a>
+
+
+
+{% endfor %}
+
 {% endblock %}
