@@ -5,9 +5,22 @@
 
 {% block content %}
 
+{% if messages %}
+
+
+
+{% for message in messages %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+{% endfor %}
+{% endif %}
+
 
 {% if items %}
-
 <table class="table">
     <thead>
       <tr>
@@ -26,8 +39,9 @@
         <tr class="table-secondary">
             <th scope="row">{{item.id}}</th>
             <td class="text-decoration-line-through text-danger"> {{item.item}}</td>
-            <td> <input type="checkbox" name="complete" value="{{item.completed}}"></td>
-            <td> <i class=" btn btn-danger bi bi-trash"></i> </td>
+            <td> <a href="{% url 'uncross' item.id %} ">Uncrossed </a> </td>
+            <td> <a href="{% url 'edit' item.id %} ">Edit </a> </td>
+            <td> <a href="{% url 'delete' item.id %}"><i class=" btn btn-danger bi bi-trash"></i>  </a></td>
         
         </tr>
         {% else %}
@@ -35,8 +49,9 @@
         <tr >
             <th scope="row">{{item.id}}</th>
             <td> {{item.item}}</td>
-            <td> <input type="checkbox" name="complete" value="{{item.completed}}"></td>
-            <td> <i class=" btn btn-danger bi bi-trash"></i> </td>
+            <td> <a href="{% url 'completed' item.id %} ">Crossed off</a> </td>
+            <td> <a href="{% url 'edit' item.id %} ">Edit</a> </td>
+            <td> <a href="{% url 'delete' item.id %}"><i class=" btn btn-danger bi bi-trash"></i>  </a> </td>
           
           </tr>
 
