@@ -1,10 +1,15 @@
 from django.shortcuts import render
-
+from .models import List
+from .forms import ItemList
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'todo_list/index.html')
+    all_items = List.objects.all()
+    
+    context = {'items': all_items}
+    
+    return render(request, 'todo_list/index.html', context)
 
 
 def about(request):

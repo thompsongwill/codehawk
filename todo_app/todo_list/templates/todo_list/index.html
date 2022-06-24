@@ -5,5 +5,47 @@
 
 {% block content %}
 
+
+{% if items %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S/N</th>
+        <th scope="col">Item</th>
+        <th scope="col">Completed</th>
+        <th scope="col">Delete</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+
+
+        {% for item in items %}
+        {% if item.completed %}
+        <tr class="table-secondary">
+            <th scope="row">{{item.id}}</th>
+            <td class="text-decoration-line-through text-danger"> {{item.item}}</td>
+            <td> <input type="checkbox" name="complete" value="{{item.completed}}"></td>
+            <td> <i class=" btn btn-danger bi bi-trash"></i> </td>
+        
+        </tr>
+        {% else %}
+
+        <tr >
+            <th scope="row">{{item.id}}</th>
+            <td> {{item.item}}</td>
+            <td> <input type="checkbox" name="complete" value="{{item.completed}}"></td>
+            <td> <i class=" btn btn-danger bi bi-trash"></i> </td>
+          
+          </tr>
+
+          {% endif %}
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endif %}
 {% endblock %}
 
